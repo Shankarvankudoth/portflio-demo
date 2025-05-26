@@ -86,11 +86,11 @@ const Education: React.FC = () => {
         </div>
 
         {/* Education Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 gap-8 mb-16">
           {education.map((item) => (
             <div
               key={item.id}
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-md"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-md  mx-auto"
             >
               <div className="flex items-start mb-4">
                 <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full mr-4">

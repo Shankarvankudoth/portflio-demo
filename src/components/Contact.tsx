@@ -36,33 +36,54 @@ const Contact: React.FC = () => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setSubmitResult(null);
+
+    try {
+      const response = await fetch('http://localhost:4000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitResult({
+          success: true,
+          message: result.message || "Your message has been sent successfully! I'll get back to you soon.",
+        });
+
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setSubmitResult(null);
+        }, 5000);
+      } else {
+        setSubmitResult({
+          success: false,
+          message: result.message || 'Failed to send message. Please try again later.',
+        });
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
       setSubmitResult({
-        success: true,
-        message: 'Your message has been sent successfully! I\'ll get back to you soon.'
+        success: false,
+        message: 'Network error. Please try again later.',
       });
-      
-      // Reset form after submission
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-      
-      // Clear success message after 5 seconds
-      setTimeout(() => {
-        setSubmitResult(null);
-      }, 5000);
-    }, 1500);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
 
   return (
     <section 

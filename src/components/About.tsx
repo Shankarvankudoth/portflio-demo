@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
+import shankar from '../assets/shankar.pdf'; // Adjust the path as necessary
 const About: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   
@@ -80,13 +80,15 @@ const About: React.FC = () => {
             </div>
             
             <div className="mt-8">
-              <a 
-                href="#" 
+              <a
+                href={shankar}
+                download="shankar-Resume.pdf"
                 className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-md hover:shadow-lg"
               >
                 Download Resume
               </a>
             </div>
+
           </div>
         </div>
       </div>

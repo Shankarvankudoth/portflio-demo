@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, ArrowUp } from 'lucide-react';
+import { Heart} from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -56,12 +56,12 @@ const Footer: React.FC = () => {
         
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500">
-            &copy; {currentYear} John Doe. All rights reserved.
+            &copy; {currentYear} Shankar. All rights reserved.
           </p>
           
           <div className="flex items-center mt-4 md:mt-0">
             <p className="text-gray-500 flex items-center">
-              Made with <Heart size={16} className="mx-1 text-red-500" /> by John Doe
+              Made with <Heart size={16} className="mx-1 text-red-500" /> by Shankar
             </p>
           </div>
         </div>
