@@ -77,12 +77,13 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [showTools, setShowTools] = useState(false);
 
   return (
+    <>
     <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 transition-transform">
       <div className="relative group h-48 overflow-hidden cursor-pointer" onClick={() => setShowTools(!showTools)}>
         <img 
           src={project.image} 
           alt={project.title} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-100 h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-5">
           <div className="space-x-2">
@@ -109,43 +110,50 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
               </a>
             )}
           </div>
-          <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold">
+          <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold ">
             {project.category}
           </span>
         </div>
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag) => (
-            <span 
-              key={tag} 
-              className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        {showTools && project.toolsDescription && (
-          <div className="bg-gray-100 dark:bg-gray-700 text-sm text-gray-800 dark:text-gray-200 p-4 rounded-md whitespace-pre-line">
-            {project.toolsDescription}
-          </div>
-        )}
-        {showTools && project.images && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-            {project.images.map((imgSrc, idx) => (
-              <img
-                key={idx}
-                src={imgSrc}
-                alt={`Project Image ${idx + 1}`}
-                className="rounded-lg w-full object-cover"
-              />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h3>
+          <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{project.description}</p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.map((tag) => (
+              <span 
+                key={tag} 
+                className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded"
+              >
+                {tag}
+              </span>
             ))}
           </div>
-        )}
+        
+        
+        </div>
       </div>
-    </div>
+      {showTools && project.toolsDescription && (
+        
+        <div className="col-span-full bg-[#FFFFFF] p-6 rounded-lg shadow-md">
+          <p className="text-gray-700"> {project.toolsDescription}</p>
+        </div>
+      
+      
+
+      )}
+      {showTools && project.images && (
+        <div className="col-span-full bg-[#FFFFFF] p-6 rounded-lg shadow-md">
+          {project.images.map((imgSrc, idx) => (
+            <img
+              key={idx}
+              src={imgSrc}
+              alt={`Project Image ${idx + 1}`}
+              className="rounded-lg w-full object-cover"
+            />
+          ))}
+        </div>
+      )}
+      </>
   );
 };
 
@@ -209,7 +217,7 @@ const Projects: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1  lg:grid-cols-1 gap-8">
           {filteredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

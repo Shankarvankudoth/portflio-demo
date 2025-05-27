@@ -17,6 +17,7 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
+    console.log('Received contact form submission:', req.body);
     // Create a transporter
     const transporter = nodemailer.createTransport({
       service: 'gmail', // Or use another provider's SMTP config
@@ -45,7 +46,7 @@ app.post('/api/contact', async (req, res) => {
 
     // Send the email
     await transporter.sendMail(mailOptions);
-
+console.log('Email sent successfully:', mailOptions);
     return res.status(200).json({ success: true, message: 'Email sent successfully!' });
   } catch (error) {
     console.error('Error sending email:', error);

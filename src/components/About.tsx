@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import shankar from '../assets/shankar.pdf'; // Adjust the path as necessary
+import aboutimg from '../assets/aboutimg.jpg'; // Adjust the path as necessary
 const About: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   
@@ -29,10 +30,10 @@ const About: React.FC = () => {
       <div className="container mx-auto max-w-5xl">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="w-full md:w-2/5">
-            <div className="relative">
-              <div className="absolute inset-0 bg-blue-600 rounded-lg transform translate-x-4 translate-y-4 dark:bg-blue-500"></div>
+            <div className="relative mr-8 mb-28">
+              <div className="absolute inset-0 rounded-lg transform translate-x-4 translate-y-4"></div>
               <img 
-                src="https://images.pexels.com/photos/1181216/pexels-photo-1181216.jpeg" 
+                src={aboutimg}
                 alt="Professional portrait" 
                 className="relative z-10 rounded-lg shadow-xl w-full h-auto object-cover"
               />
